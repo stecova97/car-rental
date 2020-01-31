@@ -26,6 +26,8 @@
         <mapping class="main.java.entities.Veicolo" />
         <mapping class="main.java.entities.Prenotazione" />
         <mapping class="main.java.entities.Casa_automobilistica" />
+        <mapping class="main.java.entities.Ruolo" />
+        <mapping class="main.java.entities.Utente" />
 
     </session-factory>
 </hibernate-configuration>
