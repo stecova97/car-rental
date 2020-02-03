@@ -2,6 +2,7 @@ package main.java.entities;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -15,6 +16,8 @@ public class Casa_automobilistica {
     @Column(name = "nome" ,nullable =false)
     private String nome;
 
+    @OneToMany
+    private List<Veicolo> veicolo;
 
     public int getId() {
         return id;
@@ -30,5 +33,13 @@ public class Casa_automobilistica {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Veicolo> getVeicolo() {
+        return veicolo;
+    }
+
+    public void setVeicolo(List<Veicolo> veicolo) {
+        this.veicolo = veicolo;
     }
 }

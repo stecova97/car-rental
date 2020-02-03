@@ -18,12 +18,13 @@ public class Veicolo {
     @Column(name="modello", nullable =false)
     private String modello;
 
-    @Column(name="anno_imatricolazione", nullable =false)
+    @Column(name="anno_immatricolazione", nullable =false)
     private int anno_immatricolazione;
 
-    @OneToOne(mappedBy = "casa_automobilistica", cascade=CascadeType.REMOVE)
-    private int casa_automobilista;
 
+    @ManyToOne
+    @JoinColumn(name = "casa_automobilistica")
+    private Casa_automobilistica casa_automobilista;
 
     public String getTarga() {
         return targa;
@@ -57,11 +58,11 @@ public class Veicolo {
         this.anno_immatricolazione = anno_immatricolazione;
     }
 
-    public int getCasa_automobilista() {
+    public Casa_automobilistica getCasa_automobilista() {
         return casa_automobilista;
     }
 
-    public void setCasa_automobilista(int casa_automobilista) {
+    public void setCasa_automobilista(Casa_automobilistica casa_automobilista) {
         this.casa_automobilista = casa_automobilista;
     }
 }

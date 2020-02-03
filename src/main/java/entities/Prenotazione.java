@@ -17,11 +17,13 @@ public class Prenotazione {
     @Column(name = "data_fine", nullable = false)
     private Date data_fine;
 
-    @OneToOne
-    private int utente;
+    @ManyToOne
+    @JoinColumn(name="id", nullable = false)
+    private Veicolo veicolo;
 
-    @OneToOne(mappedBy = "targa")
-    private String veicolo;
+    @ManyToOne
+    @JoinColumn(name="id", nullable = false)
+    private Utente utente;
 
     public int getId() {
         return id;
@@ -47,19 +49,19 @@ public class Prenotazione {
         this.data_fine = data_fine;
     }
 
-    public int getUtente() {
-        return utente;
-    }
-
-    public void setUtente(int utente) {
-        this.utente = utente;
-    }
-
-    public String getVeicolo() {
+    public Veicolo getVeicolo() {
         return veicolo;
     }
 
-    public void setVeicolo(String veicolo) {
+    public void setVeicolo(Veicolo veicolo) {
         this.veicolo = veicolo;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 }

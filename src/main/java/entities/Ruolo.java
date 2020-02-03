@@ -1,6 +1,7 @@
 package main.java.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ruolo")
@@ -12,6 +13,10 @@ public class Ruolo {
 
     @Column(name = "descrizione", nullable = false)
     private String descrizione;
+
+    @OneToMany
+    private List<Utente> utente;
+
 
     public int getId() {
         return id;
