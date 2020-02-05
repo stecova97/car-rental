@@ -8,8 +8,9 @@ import java.util.List;
 public interface PrenotazioneDAO {
     //utilizzo DTO?
     void salvaPrenotazione (Prenotazione p);
-    List<Prenotazione> selezionaPrenotazioniPerUtente(String email);
-    void eliminaUtente (Utente utente);
+    //void updatePrenotazione (Prenotazione p);
+    List<Prenotazione> selezionaPrenotazioniPerUtente(int id);
+    void eliminaPrenotazione (Prenotazione p);
     Prenotazione selezionaPrenotazione(int id);
 
 }

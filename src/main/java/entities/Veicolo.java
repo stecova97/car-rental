@@ -1,7 +1,6 @@
 package main.java.entities;
 
 import javax.persistence.*;
-import javax.sound.midi.Sequence;
 
 
 @Entity
@@ -24,7 +23,7 @@ public class Veicolo {
 
     @ManyToOne
     @JoinColumn(name = "casa_automobilistica")
-    private Casa_automobilistica casa_automobilista;
+    private CasaAutomobilistica casa_automobilista;
 
     public String getTarga() {
         return targa;
@@ -58,11 +57,11 @@ public class Veicolo {
         this.anno_immatricolazione = anno_immatricolazione;
     }
 
-    public Casa_automobilistica getCasa_automobilista() {
+    public CasaAutomobilistica getCasa_automobilista() {
         return casa_automobilista;
     }
 
-    public void setCasa_automobilista(Casa_automobilistica casa_automobilista) {
+    public void setCasa_automobilista(CasaAutomobilistica casa_automobilista) {
         this.casa_automobilista = casa_automobilista;
     }
 }

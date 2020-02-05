@@ -8,8 +8,8 @@ import java.sql.Date;
 public class Prenotazione {
 
     @Id
-    @Column(name = "id", nullable = false)
-    private int id;
+    @Column(name = "id_prenotazione", nullable = false)
+    private int idPrenotazione;
 
     @Column(name = "data_inizio" , nullable = false)
     private Date data_inizio;
@@ -18,19 +18,19 @@ public class Prenotazione {
     private Date data_fine;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable = false)
+    @JoinColumn(name="veicolo", nullable = false)
     private Veicolo veicolo;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable = false)
+    @JoinColumn(name="utente", nullable = false)
     private Utente utente;
 
-    public int getId() {
-        return id;
+    public int getIdPrenotazione() {
+        return idPrenotazione;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPrenotazione(int idPrenotazione) {
+        this.idPrenotazione = idPrenotazione;
     }
 
     public Date getData_inizio() {

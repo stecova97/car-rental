@@ -8,8 +8,8 @@ import java.util.List;
 public class Ruolo {
 
     @Id
-    @Column(name = "id" , nullable = false)
-    private int id;
+    @Column(name = "id_ruolo" , nullable = false)
+    private int idRuolo;
 
     @Column(name = "descrizione", nullable = false)
     private String descrizione;
@@ -18,12 +18,20 @@ public class Ruolo {
     private List<Utente> utente;
 
 
-    public int getId() {
-        return id;
+    public int getIdRuolo() {
+        return idRuolo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdRuolo(int idRuolo) {
+        this.idRuolo = idRuolo;
+    }
+
+    public List<Utente> getUtente() {
+        return utente;
+    }
+
+    public void setUtente(List<Utente> utente) {
+        this.utente = utente;
     }
 
     public String getDescrizione() {

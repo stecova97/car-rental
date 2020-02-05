@@ -7,11 +7,11 @@ import java.util.List;
 
 @Entity
 @Table(name="casa_automobilistica")
-public class Casa_automobilistica {
+public class CasaAutomobilistica {
 
     @Id
-    @Column(name="id", nullable = false)
-    private int id;
+    @Column(name="id_casaAutomobilistica", nullable = false)
+    private int idCasaAutomobilistica;
 
     @Column(name = "nome" ,nullable =false)
     private String nome;
@@ -19,12 +19,12 @@ public class Casa_automobilistica {
     @OneToMany
     private List<Veicolo> veicolo;
 
-    public int getId() {
-        return id;
+    public int getIdCasaAutomobilistica() {
+        return idCasaAutomobilistica;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCasaAutomobilistica(int idCasaAutomobilistica) {
+        this.idCasaAutomobilistica = idCasaAutomobilistica;
     }
 
     public String getNome() {

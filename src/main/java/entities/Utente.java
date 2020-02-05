@@ -8,8 +8,8 @@ import java.util.List;
 public class Utente {
 
     @Id
-    @Column(name = "id", nullable = false)
-    private int id;
+    @Column(name = "id_utente", nullable = false)
+    private int idUtente;
 
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -30,12 +30,20 @@ public class Utente {
     @OneToMany(mappedBy = "utente", cascade=CascadeType.REMOVE)
     private List<Prenotazione> prenotazioni;
 
-    public int getId() {
-        return id;
+    public int getIdUtente() {
+        return idUtente;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdUtente(int idUtente) {
+        this.idUtente = idUtente;
+    }
+
+    public Ruolo getRuolo() {
+        return ruolo;
+    }
+
+    public void setRuolo(Ruolo ruolo) {
+        this.ruolo = ruolo;
     }
 
     public String getNome() {
