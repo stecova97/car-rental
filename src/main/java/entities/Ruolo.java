@@ -8,7 +8,7 @@ import java.util.List;
 public class Ruolo {
 
     @Id
-    @Column(name = "id_ruolo" , nullable = false)
+    @Column(name = "id_ruolo" , nullable = false)   //1 super 0 no
     private int idRuolo;
 
     @Column(name = "descrizione", nullable = false)

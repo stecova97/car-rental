@@ -77,13 +77,13 @@ public class UtenteDAOImpl implements UtenteDAO {
     }
 
     @Override
-    public Utente trovaUtente(int id) {
+    public Utente trovaUtente(String email) {
         Session session =this.sessionFactory.openSession();
         session.beginTransaction();
         Utente u = null;
 
         u = (Utente) session.createQuery(
-                "SELECT * FROM Utente WHERE idUtente =" + id
+                "SELECT * FROM Utente WHERE email =" + email
         ).getSingleResult();
         session.getTransaction().commit();
         session.close();

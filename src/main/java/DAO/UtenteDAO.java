@@ -11,5 +11,5 @@ public interface UtenteDAO {
     void updateUtente(Utente u);
     void salvaUtente(Utente u);
     List<Utente> selezionaUtenti();
-    Utente trovaUtente(int id);
+    Utente trovaUtente(String email);
 }
