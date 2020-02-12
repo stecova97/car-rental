@@ -16,7 +16,7 @@ public class CasaAutomobilistica {
     @Column(name = "nome" ,nullable =false)
     private String nome;
 
-    @OneToMany
+    @OneToMany(mappedBy = "casa_automobilista", cascade = CascadeType.ALL)
     private List<Veicolo> veicolo;
 
     public int getIdCasaAutomobilistica() {

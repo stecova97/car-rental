@@ -9,39 +9,39 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 
 public class CasaAutomobilisticaDAOImpl implements CasaAutomobilisticaDAO {
-    private SessionFactory sessionFactory = javaHibernateUtil.getSessionFactory();
+//    private SessionFactory sessionFactory = javaHibernateUtil.getSessionFactory();
 
     public CasaAutomobilistica selezioneCasaAutomobilistica(int id) {
-        Session session = this.sessionFactory.openSession();
-        session.beginTransaction();
-
-        CasaAutomobilistica c = null;
-
-        c = (CasaAutomobilistica) session.createQuery(
-                "SELECT idCasaAutomobilistica FROM CasaAutomobilistica WHERE idCasaAutomobilistica = " + id
-        ).getSingleResult();
-
-        session.getTransaction().commit();
-        session.close();
-        return  c;
+//        Session session = this.sessionFactory.openSession();
+//        session.beginTransaction();
+//
+//        CasaAutomobilistica c = null;
+//
+//        c = (CasaAutomobilistica) session.createQuery(
+//                "SELECT idCasaAutomobilistica FROM CasaAutomobilistica WHERE idCasaAutomobilistica = " + id
+//        ).getSingleResult();
+//
+//        session.getTransaction().commit();
+//        session.close();
+        return  null;
 
     }
 
 
     public List<CasaAutomobilistica> elencoCaseAutomobilistiche() {
-        Session session = this.sessionFactory.openSession();
-        session.beginTransaction();
-
-        List <CasaAutomobilistica> c = null;
-
-        c = (List <CasaAutomobilistica>) session.createQuery(
-                "SELECT nome FROM CasaAutomobilistica "
-        ).list();
-
-
-        session.getTransaction().commit();
-        session.close();
-        return c;
+//        Session session = this.sessionFactory.openSession();
+//        session.beginTransaction();
+//
+//        List <CasaAutomobilistica> c = null;
+//
+//        c = (List <CasaAutomobilistica>) session.createQuery(
+//                "SELECT nome FROM CasaAutomobilistica "
+//        ).list();
+//
+//
+//        session.getTransaction().commit();
+//        session.close();
+        return null;
     }
 
 

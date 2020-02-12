@@ -12,21 +12,21 @@ import java.util.List;
 
 
 public class RuoloDAOImpl implements RuoloDAO {
-    private SessionFactory sessionFactory = javaHibernateUtil.getSessionFactory();
+//    private SessionFactory sessionFactory = javaHibernateUtil.getSessionFactory();
 
 
     public Ruolo trovaRuolo() {
-        Session session =this.sessionFactory.openSession();
-        session.beginTransaction();
-        Ruolo r = null;
-
-        r = (Ruolo) session.createQuery(
-                "SELECT idRuolo FROM Ruolo"
-        ).getSingleResult();
-
-        session.getTransaction().commit();
-        session.close();
-        return r;
+//        Session session =this.sessionFactory.openSession();
+//        session.beginTransaction();
+//        Ruolo r = null;
+//
+//        r = (Ruolo) session.createQuery(
+//                "SELECT idRuolo FROM Ruolo"
+//        ).getSingleResult();
+//
+//        session.getTransaction().commit();
+//        session.close();
+        return null;
 
     }
 

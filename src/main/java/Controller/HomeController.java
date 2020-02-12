@@ -5,16 +5,18 @@ import main.java.DAOimplementation.UtenteDAOImpl;
 import main.java.DTO.UtenteDTO;
 import main.java.entities.Prenotazione;
 import main.java.entities.Utente;
-import sun.misc.Request;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+
 
 public class HomeController extends HttpServlet {
 
@@ -28,8 +30,8 @@ public class HomeController extends HttpServlet {
 
         String emailUserLog = (String) session.getAttribute("user");
         if(emailUserLog == null) {       //user non loggato
-            String email = (String) req.getAttribute("email");
-            String password = (String) req.getAttribute("psw");
+            String email = (String) req.getParameter("email");
+            String password = (String) req.getParameter("psw");
             user.setEmail(email);
             user.setPsw(password);
             userlog = UtenteDAOImpl.getUtentiDAO().loginUtente(user);
@@ -45,9 +47,12 @@ public class HomeController extends HttpServlet {
         }else if(userlog.getRuolo().getIdRuolo() == 1 ) {
             session.setAttribute("user", userlog.getEmail());                               //user registrato super
             List<Utente> utenti = UtenteDAOImpl.getUtentiDAO().selezionaUtenti();
+            session.setAttribute("isSuperUSer", true);
+            req.setAttribute("utenti",utenti);
             dispatcher =req.getRequestDispatcher("/pages/homeAdmin.jsp");
         }else{
             session.setAttribute("user", userlog.getEmail());                               //user registrato customer
+            session.setAttribute("isSuperUSer", false);
             List<Prenotazione> prenotazioni = PrenotazioneDAOImpl.getPrenotazioneDAOImpl().selezionaPrenotazioniPerUtente(userlog.getIdUtente());
             dispatcher =req.getRequestDispatcher("/pages/homeCustomer.jsp");
         }

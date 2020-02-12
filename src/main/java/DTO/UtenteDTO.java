@@ -9,9 +9,13 @@ public class UtenteDTO {
     private String psw;
 
 
-    public UtenteDTO(int id, String email, String psw, Ruolo ruolo) {
+    public UtenteDTO(String email, String psw) {
         this.email = email;
         this.psw = psw;
+    }
+
+    public UtenteDTO() {
+
     }
 
     public String getEmail() {
@@ -28,5 +32,13 @@ public class UtenteDTO {
 
     public void setPsw(String psw) {
         this.psw = psw;
+    }
+
+    @Override
+    public String toString() {
+        return "UtenteDTO{" +
+                "email='" + email + '\'' +
+                ", psw='" + psw + '\'' +
+                '}';
     }
 }
