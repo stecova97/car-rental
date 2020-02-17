@@ -9,7 +9,7 @@ public interface PrenotazioneDAO {
     //utilizzo DTO?
     void salvaPrenotazione (Prenotazione p);
     //void updatePrenotazione (Prenotazione p);
-    List<Prenotazione> selezionaPrenotazioniPerUtente(int id);
+    List<Prenotazione> selezionaPrenotazioniPerUtente(Integer id);
     void eliminaPrenotazione (Prenotazione p);
     Prenotazione selezionaPrenotazione(int id);
 

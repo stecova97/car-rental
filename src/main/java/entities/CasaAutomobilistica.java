@@ -11,7 +11,7 @@ public class CasaAutomobilistica {
 
     @Id
     @Column(name="id_casaAutomobilistica", nullable = false)
-    private int idCasaAutomobilistica;
+    private Integer idCasaAutomobilistica;
 
     @Column(name = "nome" ,nullable =false)
     private String nome;
@@ -19,13 +19,17 @@ public class CasaAutomobilistica {
     @OneToMany(mappedBy = "casa_automobilista", cascade = CascadeType.ALL)
     private List<Veicolo> veicolo;
 
-    public int getIdCasaAutomobilistica() {
+    public CasaAutomobilistica() {
+    }
+
+    public Integer getIdCasaAutomobilistica() {
         return idCasaAutomobilistica;
     }
 
-    public void setIdCasaAutomobilistica(int idCasaAutomobilistica) {
+    public void setIdCasaAutomobilistica(Integer idCasaAutomobilistica) {
         this.idCasaAutomobilistica = idCasaAutomobilistica;
     }
+
 
     public String getNome() {
         return nome;

@@ -3,10 +3,15 @@ package main.java.DAOimplementation;
 import main.java.DAO.PrenotazioneDAO;
 import main.java.HibernateUtil.javaHibernateUtil;
 import main.java.entities.Prenotazione;
+import main.java.entities.Utente;
+import main.java.entities.Veicolo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PrenotazioneDAOImpl implements PrenotazioneDAO {
@@ -14,56 +19,80 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 //    private SessionFactory sessionFactory = javaHibernateUtil.getSessionFactory();
 
     public void salvaPrenotazione(Prenotazione p) {
-//        Session session = this.sessionFactory.openSession();
-//        Prenotazione prenotazione = new Prenotazione();
-//        prenotazione.setUtente(p.getUtente());
-//        prenotazione.setVeicolo(p.getVeicolo());
-//        prenotazione.setData_fine(p.getData_inizio());
-//        prenotazione.setData_inizio(p.getData_fine());
-//
-//        session.save(prenotazione);
-//        session.close();
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = javaHibernateUtil.getHibernateSession();
+            transaction = session.beginTransaction();
+            session.save(p);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null)
+                transaction.rollback();
+        } finally {
+            session.close();
+        }
     }
 
 
 
 
     @Override
-    public List<Prenotazione> selezionaPrenotazioniPerUtente(int id) {
-//        Session session = this.sessionFactory.openSession();
-//        session.beginTransaction();
-//        List<Prenotazione> prenotazioni = null;
-//
-//        prenotazioni= (List<Prenotazione>) session.createQuery(
-//                "SELECT idPrenotazione, utente, veicolo FROM Prenotazione WHERE utente =  " + id
-//        ).list();
-//
-//        session.close();
-        return null;
+    public List<Prenotazione> selezionaPrenotazioniPerUtente(Integer id) {
+        List<Prenotazione> prenotazioni = new ArrayList<>();
+        Transaction transaction = null;
+        Session session = null;
+        try  {
+            session = javaHibernateUtil.getHibernateSession();
+            transaction = session.beginTransaction();
+            prenotazioni = session.createQuery("select p from Prenotazione p inner join Utente u on p.utente.idUtente = u.idUtente where u.idUtente =: id", Prenotazione.class).setParameter("id",id).getResultList();
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+
+        return prenotazioni;
     }
 
 
     public void eliminaPrenotazione(Prenotazione p) {
-//        Session session = this.sessionFactory.openSession();
-//        session.beginTransaction();
-//
-//        Query q = session.createQuery("DELETE FROM Prenotazione  WHERE  idPrenotazione = " + p.getIdPrenotazione());
-//
-//        session.getTransaction().commit();
-//        session.close();
+        Session session;
+        session= javaHibernateUtil.getHibernateSession();
+        session.beginTransaction();
+        Query q = session.createQuery("DELETE FROM Prenotazione pe WHERE pe.idPrenotazione ='" + p.getIdPrenotazione() + "'");
+        try {
+            q.executeUpdate();
+            session.getTransaction().commit();
+        }catch (PersistenceException pe){
+            throw pe;
+        }finally{
+            session.close();
+        }
     }
 
 
     public Prenotazione selezionaPrenotazione(int id) {
-//        Session session = this.sessionFactory.openSession();
-//        session.beginTransaction();
-//        Prenotazione p = null;
-//
-//        p = (Prenotazione) session.createQuery(
-//                "SELECT idPrenotazione, utente, veicolo FROM Prenotazione where idPrenotazione =  " +  id
-//        ).getSingleResult();
-
-        return null;
+        Prenotazione p = new Prenotazione();
+        Transaction transaction = null;
+        Session session = null;
+        try{
+            session= javaHibernateUtil.getHibernateSession();
+            p = (Prenotazione) session.createQuery("select pe from Prenotazione pe where pe.idPrenotazione like ="+ id  ).getSingleResult();
+        }
+        catch (Exception e){
+            if(transaction!=null)
+                transaction.rollback();
+            p=null;
+        }
+        finally {
+                session.close();
+        }
+        return p;
     }
 
     private static PrenotazioneDAOImpl istanza = null;

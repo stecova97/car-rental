@@ -5,6 +5,6 @@ import main.java.entities.CasaAutomobilistica;
 import java.util.List;
 
 public interface CasaAutomobilisticaDAO {
-    CasaAutomobilistica selezioneCasaAutomobilistica(int id);
+    CasaAutomobilistica selezioneCasaAutomobilistica(Integer id);
     List<CasaAutomobilistica> elencoCaseAutomobilistiche();
 }

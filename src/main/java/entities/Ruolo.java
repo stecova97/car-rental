@@ -9,7 +9,7 @@ public class Ruolo {
 
     @Id
     @Column(name = "id_ruolo" , nullable = false)   //1 super 0 no
-    private int idRuolo;
+    private Integer idRuolo;
 
     @Column(name = "descrizione", nullable = false)
     private String descrizione;
@@ -17,12 +17,14 @@ public class Ruolo {
     @OneToMany
     private List<Utente> utente;
 
+    public Ruolo() {
+    }
 
-    public int getIdRuolo() {
+    public Integer getIdRuolo() {
         return idRuolo;
     }
 
-    public void setIdRuolo(int idRuolo) {
+    public void setIdRuolo(Integer idRuolo) {
         this.idRuolo = idRuolo;
     }
 

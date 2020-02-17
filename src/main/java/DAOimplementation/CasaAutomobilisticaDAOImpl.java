@@ -11,7 +11,7 @@ import java.util.List;
 public class CasaAutomobilisticaDAOImpl implements CasaAutomobilisticaDAO {
 //    private SessionFactory sessionFactory = javaHibernateUtil.getSessionFactory();
 
-    public CasaAutomobilistica selezioneCasaAutomobilistica(int id) {
+    public CasaAutomobilistica selezioneCasaAutomobilistica(Integer id) {
 //        Session session = this.sessionFactory.openSession();
 //        session.beginTransaction();
 //

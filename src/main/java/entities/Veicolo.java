@@ -25,6 +25,9 @@ public class Veicolo {
     @JoinColumn(name = "casa_automobilistica")
     private CasaAutomobilistica casa_automobilista;
 
+    public Veicolo() {
+    }
+
     public String getTarga() {
         return targa;
     }

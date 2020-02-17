@@ -9,7 +9,7 @@ public class Prenotazione {
 
     @Id
     @Column(name = "id_prenotazione", nullable = false)
-    private int idPrenotazione;
+    private Integer idPrenotazione;
 
     @Column(name = "data_inizio" , nullable = false)
     private Date data_inizio;
@@ -25,11 +25,14 @@ public class Prenotazione {
     @JoinColumn(name="utente", nullable = false)
     private Utente utente;
 
-    public int getIdPrenotazione() {
+    public Prenotazione() {
+    }
+
+    public Integer getIdPrenotazione() {
         return idPrenotazione;
     }
 
-    public void setIdPrenotazione(int idPrenotazione) {
+    public void setIdPrenotazione(Integer idPrenotazione) {
         this.idPrenotazione = idPrenotazione;
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UtenteDAO {
     Utente loginUtente(UtenteDTO utenteDTO);
-    void eliminaUtente(int id);
+    void eliminaUtente(Integer id);
     void updateUtente(Utente u);
     void salvaUtente(Utente u);
     List<Utente> selezionaUtenti();

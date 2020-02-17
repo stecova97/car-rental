@@ -35,16 +35,17 @@ public class UtenteDAOImpl implements UtenteDAO {
             utente = null;
             //e.printStackTrace();
         } finally {
-            if (session != null) {
-                session.close();
-            }
+//            if (session != null) {
+//                session.close();
+//            }
+            session.close();
         }
-        javaHibernateUtil.shutdown();
+        //javaHibernateUtil.shutdown();
         return utente;
     }
 
     @Override
-   public void eliminaUtente(int id) {
+   public void eliminaUtente(Integer id) {
         Transaction transaction = null;
         Session session = null;
         session = javaHibernateUtil.getHibernateSession();
@@ -95,7 +96,7 @@ public class UtenteDAOImpl implements UtenteDAO {
             if (transaction != null) {
                 transaction.rollback();
             }
-            e.printStackTrace();
+           // e.printStackTrace();
         }
         return utenti;
     }
@@ -118,8 +119,6 @@ public class UtenteDAOImpl implements UtenteDAO {
 
     private static UtenteDAOImpl istanza = null;
 
-    private UtenteDAOImpl() {
-    }
 
     //accesso al singleton
     public static synchronized UtenteDAOImpl getUtentiDAO() {

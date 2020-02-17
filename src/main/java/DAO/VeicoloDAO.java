@@ -5,9 +5,9 @@ import main.java.entities.Veicolo;
 import java.util.List;
 
 public interface VeicoloDAO {
-    Veicolo selezioneVeicolo (int cod);
+    Veicolo selezioneVeicolo (String cod);
     List<Veicolo>  elencoVeicoli();
-    void eliminaVeicolo(int cod);
+    void eliminaVeicolo(String cod);
     void salvaVeicolo(Veicolo v);
 
 }

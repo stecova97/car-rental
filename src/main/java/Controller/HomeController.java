@@ -1,5 +1,7 @@
 package main.java.Controller;
 
+import main.java.DAO.PrenotazioneDAO;
+import main.java.DAO.UtenteDAO;
 import main.java.DAOimplementation.PrenotazioneDAOImpl;
 import main.java.DAOimplementation.UtenteDAOImpl;
 import main.java.DTO.UtenteDTO;
@@ -20,6 +22,7 @@ import java.util.List;
 
 public class HomeController extends HttpServlet {
 
+    private PrenotazioneDAO prenotazioneDAO = PrenotazioneDAOImpl.getPrenotazioneDAOImpl();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -27,6 +30,7 @@ public class HomeController extends HttpServlet {
         UtenteDTO user;
         user = new UtenteDTO();
         RequestDispatcher dispatcher;
+
 
         String emailUserLog = (String) session.getAttribute("user");
         if(emailUserLog == null) {       //user non loggato
@@ -53,7 +57,9 @@ public class HomeController extends HttpServlet {
         }else{
             session.setAttribute("user", userlog.getEmail());                               //user registrato customer
             session.setAttribute("isSuperUSer", false);
-            List<Prenotazione> prenotazioni = PrenotazioneDAOImpl.getPrenotazioneDAOImpl().selezionaPrenotazioniPerUtente(userlog.getIdUtente());
+            List<Prenotazione> prenotazioni = prenotazioneDAO.selezionaPrenotazioniPerUtente(userlog.getIdUtente());
+                    //PrenotazioneDAOImpl.getPrenotazioneDAOImpl().selezionaPrenotazioniPerUtente(userlog.getIdUtente());
+            req.setAttribute("prenotazioni", prenotazioni);
             dispatcher =req.getRequestDispatcher("/pages/homeCustomer.jsp");
         }
             dispatcher.forward(req,resp);

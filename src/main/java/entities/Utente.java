@@ -9,7 +9,7 @@ public class Utente {
 
     @Id
     @Column(name = "id_utente", nullable = false)
-    private int idUtente;
+    private Integer idUtente;
 
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -30,11 +30,14 @@ public class Utente {
     @OneToMany(mappedBy = "utente", cascade=CascadeType.REMOVE)
     private List<Prenotazione> prenotazioni;
 
-    public int getIdUtente() {
+    public Utente() {
+    }
+
+    public Integer getIdUtente() {
         return idUtente;
     }
 
-    public void setIdUtente(int idUtente) {
+    public void setIdUtente(Integer idUtente) {
         this.idUtente = idUtente;
     }
 
