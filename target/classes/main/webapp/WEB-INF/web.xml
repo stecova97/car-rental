@@ -13,5 +13,22 @@
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>logOut</servlet-name>
+    <servlet-class>main.java.Controller.LogOutController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logOut</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>creaModificaUtente</servlet-name>
+    <servlet-class>main.java.Controller.CreaModificaUtente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>creaModificaUtente</servlet-name>
+    <url-pattern>/creaModificaUtente</url-pattern>
+  </servlet-mapping>
 
 </web-app>

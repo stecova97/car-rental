@@ -51,12 +51,12 @@ public class HomeController extends HttpServlet {
         }else if(userlog.getRuolo().getIdRuolo() == 1 ) {
             session.setAttribute("user", userlog.getEmail());                               //user registrato super
             List<Utente> utenti = UtenteDAOImpl.getUtentiDAO().selezionaUtenti();
-            session.setAttribute("isSuperUSer", true);
+            session.setAttribute("isSuperUser", true);
             req.setAttribute("utenti",utenti);
             dispatcher =req.getRequestDispatcher("/pages/homeAdmin.jsp");
         }else{
             session.setAttribute("user", userlog.getEmail());                               //user registrato customer
-            session.setAttribute("isSuperUSer", false);
+            session.setAttribute("isSuperUser", false);
             List<Prenotazione> prenotazioni = prenotazioneDAO.selezionaPrenotazioniPerUtente(userlog.getIdUtente());
                     //PrenotazioneDAOImpl.getPrenotazioneDAOImpl().selezionaPrenotazioniPerUtente(userlog.getIdUtente());
             req.setAttribute("prenotazioni", prenotazioni);
@@ -64,7 +64,9 @@ public class HomeController extends HttpServlet {
         }
             dispatcher.forward(req,resp);
 
+    }
 
-
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req,resp);
     }
 }

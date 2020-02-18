@@ -33,14 +33,11 @@ public class UtenteDAOImpl implements UtenteDAO {
                 transaction.rollback();
             }
             utente = null;
-            //e.printStackTrace();
+
         } finally {
-//            if (session != null) {
-//                session.close();
-//            }
-            session.close();
+               session.close();
         }
-        //javaHibernateUtil.shutdown();
+
         return utente;
     }
 
@@ -62,28 +59,44 @@ public class UtenteDAOImpl implements UtenteDAO {
 //
 //    @Override
     public void updateUtente(Utente u) {
-        Transaction transaction = null;
-        Session session = null;
-//        Session session = this.sessionFactory.openSession();
-//        session.beginTransaction();
-//        session.update(u);
-//        session.getTransaction().commit();
-//        session.close();
+        Transaction transaction=null;
+        Session session=null;
+
+        try {
+            session=javaHibernateUtil.getHibernateSession();
+            transaction= session.beginTransaction();
+            session.update(u);
+            transaction.commit();
+        }
+        catch (Exception e){
+            if(transaction!=null)
+                transaction.rollback();
+
+        }
+        finally {
+                session.close();
+        }
+
     }
 
     @Override
     public void salvaUtente(Utente u) {
-//        Session session = this.sessionFactory.openSession();
-//        session.beginTransaction();
-//        Utente utente = new Utente();
-//        utente.setCognome(u.getCognome());
-//        utente.setEmail(u.getEmail());
-//        utente.setIdUtente(u.getIdUtente());
-//        utente.setNome(u.getNome());
-//        utente.setPassword(u.getPassword());
-//        utente.setRuolo(u.getRuolo());
-//        session.save(utente);
-//        session.close();
+        Transaction transaction = null;
+        Session session=null;
+        try {
+            session=javaHibernateUtil.getHibernateSession();
+            transaction= session.beginTransaction();
+            session.save(u);
+            transaction.commit();
+        }
+        catch (Exception e){
+            if(transaction!=null)
+                transaction.rollback();
+        }
+        finally {
+            if(session!=null)
+                session.close();
+        }
     }
 //
     @Override
@@ -93,28 +106,56 @@ public class UtenteDAOImpl implements UtenteDAO {
         try (Session session = javaHibernateUtil.getHibernateSession()) {
             utenti = session.createQuery("from Utente", Utente.class).list();
         } catch (Exception e) {
-            if (transaction != null) {
                 transaction.rollback();
-            }
-           // e.printStackTrace();
         }
         return utenti;
     }
 //
     @Override
     public Utente trovaUtente(String email) {
-//        Session session = this.sessionFactory.openSession();
-//        session.beginTransaction();
-//        Utente u = null;
-//
-//        u = (Utente) session.createQuery(
-//                "SELECT * FROM Utente WHERE email =" + email
-//        ).getSingleResult();
-//        session.getTransaction().commit();
-//        session.close();
-//        return u;
-//
-        return null;
+        Utente utente;
+        Transaction transaction = null;
+        Session session=null;
+        try {
+            session = javaHibernateUtil.getHibernateSession();
+            transaction=session.beginTransaction();
+            utente = session.createQuery(
+                    "from Utente U where U.email=:email",
+                    Utente.class
+            ).setParameter("email", email).getSingleResult();
+        } catch (Exception e) {
+                transaction.rollback();
+            utente=null;
+        }
+        finally {
+                session.close();
+        }
+        javaHibernateUtil.shutdown();
+
+        return utente;
+    }
+
+    public boolean utenteExist(String email){
+        Utente utente;
+        Transaction transaction = null;
+        Session session=null;
+        try {
+            session = javaHibernateUtil.getHibernateSession();
+            transaction=session.beginTransaction();
+            utente = session.createQuery(
+                    "from Utente U where U.email=:email",
+                    Utente.class
+            ).setParameter("email", email).getSingleResult();
+        } catch (Exception e) {
+            transaction.rollback();
+            utente=null;
+        }
+        finally {
+            session.close();
+        }
+        if(utente == null)
+            return false;
+        return true;
     }
 
     private static UtenteDAOImpl istanza = null;

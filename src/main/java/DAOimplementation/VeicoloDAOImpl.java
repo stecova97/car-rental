@@ -46,19 +46,16 @@ public class VeicoloDAOImpl implements VeicoloDAO {
         Session session = null;
         try{
             session= javaHibernateUtil.getHibernateSession();
-            veicoli = session.createQuery("select v from Veicolo v").list();
+            veicoli = (List<Veicolo>)session.createQuery("select v from Veicolo v").list();
         }
         catch (Exception e){
-            if(transaction!=null){
+            if(transaction!=null)
                 transaction.rollback();
-            }
             veicoli=null;
         }
         finally {
                 session.close();
         }
-        javaHibernateUtil.shutdown();
-
         return veicoli;
 
     }

@@ -20,7 +20,8 @@
         <td class="text-center"><%=p.getData_inizio()%></td>
         <td class="text-center"><%=p.getData_fine()%></td>
         <td class="text-center"><%=p.getUtente().getNome()%></td>
-        <td class="text-center"><%=p.getVeicolo().getModello()%></td>
+        <td class="text-center"><%=p.getVeicolo().getModello()
+        %></td>
     </tr>
     <%
         }

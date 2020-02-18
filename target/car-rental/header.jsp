@@ -10,11 +10,11 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="theme.css">
+    <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+<%--    <link rel="stylesheet" type="text/css" href="theme.css">--%>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -42,13 +42,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Profilo</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Log Out</a>
-            </li>
+        </ul>
+        </div>
+    </div>
+    <div class="col-lg-3"></div>
+    <div class="col-lg-1">
+        <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">Log Out</a>
+        </li>
         </ul>
     </div>
-    </div>
-    <div class="col-lg-4"></div>
 </nav>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
