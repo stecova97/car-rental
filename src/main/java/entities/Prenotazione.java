@@ -9,7 +9,7 @@ public class Prenotazione {
 
     @Id
     @Column(name = "id_prenotazione", nullable = false)
-    private Integer idPrenotazione;
+    private int idPrenotazione;
 
     @Column(name = "data_inizio" , nullable = false)
     private Date data_inizio;
@@ -28,11 +28,11 @@ public class Prenotazione {
     public Prenotazione() {
     }
 
-    public Integer getIdPrenotazione() {
+    public int getIdPrenotazione() {
         return idPrenotazione;
     }
 
-    public void setIdPrenotazione(Integer idPrenotazione) {
+    public void setIdPrenotazione(int idPrenotazione) {
         this.idPrenotazione = idPrenotazione;
     }
 

@@ -1,7 +1,8 @@
 package main.java.DAOimplementation;
 
-import main.java.DAO.VeicoloDAO;
+
 import main.java.HibernateUtil.javaHibernateUtil;
+import main.java.entities.Utente;
 import main.java.entities.Veicolo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +13,7 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VeicoloDAOImpl implements VeicoloDAO {
+public class VeicoloDAOImpl {
     //private SessionFactory sessionFactory = javaHibernateUtil.getSessionFactory();
 
 
@@ -41,7 +42,7 @@ public class VeicoloDAOImpl implements VeicoloDAO {
 
 
     public List<Veicolo> elencoVeicoli() {
-        List<Veicolo> veicoli = new ArrayList<>();
+        List<Veicolo> veicoli;
         Transaction transaction = null;
         Session session = null;
         try{
@@ -83,7 +84,7 @@ public class VeicoloDAOImpl implements VeicoloDAO {
         try {
             session=javaHibernateUtil.getHibernateSession();
             transaction= session.beginTransaction();
-            session.saveOrUpdate(v);
+            session.save(v);
             transaction.commit();
         }
         catch (Exception e){
@@ -95,6 +96,49 @@ public class VeicoloDAOImpl implements VeicoloDAO {
                 session.close();
         }
 
+    }
+
+    public void updateVeicolo(Veicolo v) {
+        Transaction transaction=null;
+        Session session=null;
+
+        try {
+            session=javaHibernateUtil.getHibernateSession();
+            transaction= session.beginTransaction();
+            session.update(v);
+            transaction.commit();
+        }
+        catch (Exception e){
+            if(transaction!=null)
+                transaction.rollback();
+
+        }
+        finally {
+            session.close();
+        }
+
+    }
+    public boolean veicoloExist(String cod){
+        Veicolo veicolo;
+        Transaction transaction = null;
+        Session session=null;
+        try {
+            session = javaHibernateUtil.getHibernateSession();
+            transaction=session.beginTransaction();
+            veicolo = session.createQuery(
+                    "from Veicolo V where V.targa=:cod",
+                    Veicolo.class
+            ).setParameter("cod", cod).getSingleResult();
+        } catch (Exception e) {
+            transaction.rollback();
+            veicolo=null;
+        }
+        finally {
+            session.close();
+        }
+        if(veicolo == null)
+            return false;
+        return true;
     }
 
 

@@ -1,7 +1,8 @@
 package main.java.DAOimplementation;
 
-import main.java.DAO.PrenotazioneDAO;
+
 import main.java.HibernateUtil.javaHibernateUtil;
+import main.java.entities.CasaAutomobilistica;
 import main.java.entities.Prenotazione;
 import main.java.entities.Utente;
 import main.java.entities.Veicolo;
@@ -14,7 +15,8 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrenotazioneDAOImpl implements PrenotazioneDAO {
+public class PrenotazioneDAOImpl  {
+
 
 //    private SessionFactory sessionFactory = javaHibernateUtil.getSessionFactory();
 
@@ -37,8 +39,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 
 
 
-    @Override
-    public List<Prenotazione> selezionaPrenotazioniPerUtente(Integer id) {
+    public List<Prenotazione> selezionaPrenotazioniPerUtente(int id) {
         List<Prenotazione> prenotazioni = new ArrayList<>();
         Transaction transaction = null;
         Session session = null;
@@ -94,6 +95,8 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
         }
         return p;
     }
+
+
 
     private static PrenotazioneDAOImpl istanza = null;
 

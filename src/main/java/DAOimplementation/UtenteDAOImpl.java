@@ -1,6 +1,6 @@
 package main.java.DAOimplementation;
 
-import main.java.DAO.UtenteDAO;
+
 import main.java.DTO.UtenteDTO;
 import main.java.HibernateUtil.javaHibernateUtil;
 import main.java.entities.Utente;
@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtenteDAOImpl implements UtenteDAO {
+public class UtenteDAOImpl  {
     //private SessionFactory sessionFactory = javaHibernateUtil.getSessionFactory();
 
 
@@ -41,8 +41,8 @@ public class UtenteDAOImpl implements UtenteDAO {
         return utente;
     }
 
-    @Override
-   public void eliminaUtente(Integer id) {
+
+   public void eliminaUtente(int id) {
         Transaction transaction = null;
         Session session = null;
         session = javaHibernateUtil.getHibernateSession();
@@ -56,8 +56,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 
 
     }
-//
-//    @Override
+
     public void updateUtente(Utente u) {
         Transaction transaction=null;
         Session session=null;
@@ -79,7 +78,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 
     }
 
-    @Override
+
     public void salvaUtente(Utente u) {
         Transaction transaction = null;
         Session session=null;
@@ -98,8 +97,7 @@ public class UtenteDAOImpl implements UtenteDAO {
                 session.close();
         }
     }
-//
-    @Override
+
     public List<Utente> selezionaUtenti() {
         List<Utente> utenti = new ArrayList<>();
         Transaction transaction = null;
@@ -110,8 +108,7 @@ public class UtenteDAOImpl implements UtenteDAO {
         }
         return utenti;
     }
-//
-    @Override
+
     public Utente trovaUtente(String email) {
         Utente utente;
         Transaction transaction = null;
@@ -129,6 +126,29 @@ public class UtenteDAOImpl implements UtenteDAO {
         }
         finally {
                 session.close();
+        }
+        javaHibernateUtil.shutdown();
+
+        return utente;
+    }
+
+    public Utente trovaUtente(int id) {
+        Utente utente;
+        Transaction transaction = null;
+        Session session=null;
+        try {
+            session = javaHibernateUtil.getHibernateSession();
+            transaction=session.beginTransaction();
+            utente = session.createQuery(
+                    "from Utente U where U.idUtente=:id",
+                    Utente.class
+            ).setParameter("id", id).getSingleResult();
+        } catch (Exception e) {
+            transaction.rollback();
+            utente=null;
+        }
+        finally {
+            session.close();
         }
         javaHibernateUtil.shutdown();
 

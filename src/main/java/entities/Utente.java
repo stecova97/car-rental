@@ -7,10 +7,11 @@ import java.util.List;
 @Table(name = "utente")
 public class Utente {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_utente", nullable = false)
-    private Integer idUtente;
+    private int idUtente;
 
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -28,17 +29,17 @@ public class Utente {
     @JoinColumn(name = "ruolo")
     private Ruolo ruolo;
 
-    @OneToMany(mappedBy = "utente", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy = "utente", cascade=CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Prenotazione> prenotazioni;
 
     public Utente() {
     }
 
-    public Integer getIdUtente() {
+    public int getIdUtente() {
         return idUtente;
     }
 
-    public void setIdUtente(Integer idUtente) {
+    public void setIdUtente(int idUtente) {
         this.idUtente = idUtente;
     }
 

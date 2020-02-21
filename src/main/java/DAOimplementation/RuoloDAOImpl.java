@@ -1,7 +1,6 @@
 package main.java.DAOimplementation;
 
-import main.java.DAO.RuoloDAO;
-import main.java.DAO.VeicoloDAO;
+
 import main.java.HibernateUtil.javaHibernateUtil;
 import main.java.entities.Ruolo;
 import org.hibernate.Session;
@@ -12,7 +11,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 
-public class RuoloDAOImpl implements RuoloDAO {
+public class RuoloDAOImpl  {
 //    private SessionFactory sessionFactory = javaHibernateUtil.getSessionFactory();
 
 

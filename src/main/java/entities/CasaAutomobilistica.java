@@ -11,7 +11,7 @@ public class CasaAutomobilistica {
 
     @Id
     @Column(name="id_casaAutomobilistica", nullable = false)
-    private Integer idCasaAutomobilistica;
+    private int idCasaAutomobilistica;
 
     @Column(name = "nome" ,nullable =false)
     private String nome;
@@ -22,11 +22,11 @@ public class CasaAutomobilistica {
     public CasaAutomobilistica() {
     }
 
-    public Integer getIdCasaAutomobilistica() {
+    public int getIdCasaAutomobilistica() {
         return idCasaAutomobilistica;
     }
 
-    public void setIdCasaAutomobilistica(Integer idCasaAutomobilistica) {
+    public void setIdCasaAutomobilistica(int idCasaAutomobilistica) {
         this.idCasaAutomobilistica = idCasaAutomobilistica;
     }
 

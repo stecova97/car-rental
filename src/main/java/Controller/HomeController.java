@@ -1,7 +1,6 @@
 package main.java.Controller;
 
-import main.java.DAO.PrenotazioneDAO;
-import main.java.DAO.UtenteDAO;
+
 import main.java.DAOimplementation.PrenotazioneDAOImpl;
 import main.java.DAOimplementation.UtenteDAOImpl;
 import main.java.DTO.UtenteDTO;
@@ -22,7 +21,6 @@ import java.util.List;
 
 public class HomeController extends HttpServlet {
 
-    private PrenotazioneDAO prenotazioneDAO = PrenotazioneDAOImpl.getPrenotazioneDAOImpl();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -48,19 +46,34 @@ public class HomeController extends HttpServlet {
         if(userlog == null){                        //user non registrato
             dispatcher = req.getRequestDispatcher("index.jsp");
             dispatcher.forward(req,resp);
-        }else if(userlog.getRuolo().getIdRuolo() == 1 ) {
-            session.setAttribute("user", userlog.getEmail());                               //user registrato super
-            List<Utente> utenti = UtenteDAOImpl.getUtentiDAO().selezionaUtenti();
-            session.setAttribute("isSuperUser", true);
-            req.setAttribute("utenti",utenti);
-            dispatcher =req.getRequestDispatcher("/pages/homeAdmin.jsp");
+//        }else if(userlog.getRuolo().getIdRuolo() == 1 ) {
+//            session.setAttribute("user", userlog.getEmail());                               //user registrato super
+//            session.setAttribute("ut",userlog.getIdUtente());
+//            List<Utente> utenti = UtenteDAOImpl.getUtentiDAO().selezionaUtenti();
+//            session.setAttribute("isSuperUser", true);
+//            req.setAttribute("utenti",utenti);
+//            dispatcher =req.getRequestDispatcher("/pages/homeAdmin.jsp");
+//        }else{
+//            session.setAttribute("user", userlog.getEmail());                               //user registrato customer
+//            session.setAttribute("isSuperUser", false);
+//            session.setAttribute("ut",userlog);
+//            List<Prenotazione> prenotazioni = prenotazioneDAO.selezionaPrenotazioniPerUtente(userlog.getIdUtente());
+//            req.setAttribute("prenotazioni", prenotazioni);
+//            dispatcher =req.getRequestDispatcher("/pages/homeCustomer.jsp");
         }else{
-            session.setAttribute("user", userlog.getEmail());                               //user registrato customer
-            session.setAttribute("isSuperUser", false);
-            List<Prenotazione> prenotazioni = prenotazioneDAO.selezionaPrenotazioniPerUtente(userlog.getIdUtente());
-                    //PrenotazioneDAOImpl.getPrenotazioneDAOImpl().selezionaPrenotazioniPerUtente(userlog.getIdUtente());
-            req.setAttribute("prenotazioni", prenotazioni);
-            dispatcher =req.getRequestDispatcher("/pages/homeCustomer.jsp");
+            session.setAttribute("user", userlog.getEmail());
+            session.setAttribute("ut",userlog.getIdUtente());
+            if(userlog.getRuolo().getIdRuolo() == 1 ){
+                session.setAttribute("isSuperUser", true);
+                List<Utente> utenti = UtenteDAOImpl.getUtentiDAO().selezionaUtenti();
+                req.setAttribute("utenti",utenti);
+                dispatcher =req.getRequestDispatcher("/pages/homeAdmin.jsp");
+            }else{
+                session.setAttribute("isSuperUser", false);
+                List<Prenotazione> prenotazioni = PrenotazioneDAOImpl.getPrenotazioneDAOImpl().selezionaPrenotazioniPerUtente(userlog.getIdUtente());
+                req.setAttribute("prenotazioni", prenotazioni);
+                dispatcher =req.getRequestDispatcher("/pages/homeCustomer.jsp");
+            }
         }
             dispatcher.forward(req,resp);
 

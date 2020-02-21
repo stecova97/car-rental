@@ -13,10 +13,10 @@ public class LogOutController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session =req.getSession();
         session.removeAttribute("user");
-        if((boolean)session.getAttribute("isSuperUser")==true)
-            session.removeAttribute("utenti");
-        else
-            session.removeAttribute("prenotazioni");
+//        if((boolean)session.getAttribute("isSuperUser")==true)
+//            session.removeAttribute("utenti");
+//        else
+//            session.removeAttribute("prenotazioni");
         RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
         dispatcher.forward(req,resp);
     }

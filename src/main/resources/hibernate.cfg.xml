@@ -8,8 +8,9 @@
 
         <!-- Datasource Details -->
         <property name="hibernate.connection.driver_class">
-                com.mysql.jdbc.Driver
+            com.mysql.cj.jdbc.Driver
         </property>
+
         <property name="hibernate.connection.url">
             jdbc:mysql://localhost:3306/car_rental?serverTimezone=UTC
         </property>

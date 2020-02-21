@@ -1,6 +1,6 @@
 package main.java.DAOimplementation;
 
-import main.java.DAO.CasaAutomobilisticaDAO;
+
 import main.java.HibernateUtil.javaHibernateUtil;
 import main.java.entities.CasaAutomobilistica;
 import main.java.entities.Ruolo;
@@ -12,10 +12,10 @@ import org.hibernate.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CasaAutomobilisticaDAOImpl implements CasaAutomobilisticaDAO {
+public class CasaAutomobilisticaDAOImpl  {
 //    private SessionFactory sessionFactory = javaHibernateUtil.getSessionFactory();
 
-    public CasaAutomobilistica selezioneCasaAutomobilistica(Integer id) {
+    public CasaAutomobilistica selezioneCasaAutomobilistica(int id) {
         CasaAutomobilistica c;
         Transaction transaction=null;
         Session session=null;
@@ -38,7 +38,28 @@ public class CasaAutomobilisticaDAOImpl implements CasaAutomobilisticaDAO {
 
     }
 
+    public CasaAutomobilistica trovaCasa(String c) {
+        CasaAutomobilistica casa;
+        Transaction transaction = null;
+        Session session=null;
+        try {
+            session = javaHibernateUtil.getHibernateSession();
+            transaction=session.beginTransaction();
+            casa = session.createQuery(
+                    "from CasaAutomobilistica C where C.nome=:c",
+                    CasaAutomobilistica.class
+            ).setParameter("c", c).getSingleResult();
+        } catch (Exception e) {
+            transaction.rollback();
+            casa=null;
+        }
+        finally {
+            session.close();
+        }
+        javaHibernateUtil.shutdown();
 
+        return casa;
+    }
     public List<CasaAutomobilistica> elencoCaseAutomobilistiche() {
         List<CasaAutomobilistica> c = new ArrayList<>();
         Transaction transaction = null;

@@ -9,22 +9,22 @@ public class Ruolo {
 
     @Id
     @Column(name = "id_ruolo" , nullable = false)   //1 super 0 no
-    private Integer idRuolo;
+    private int idRuolo;
 
     @Column(name = "descrizione", nullable = false)
     private String descrizione;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Utente> utente;
 
     public Ruolo() {
     }
 
-    public Integer getIdRuolo() {
+    public int getIdRuolo() {
         return idRuolo;
     }
 
-    public void setIdRuolo(Integer idRuolo) {
+    public void setIdRuolo(int idRuolo) {
         this.idRuolo = idRuolo;
     }
 

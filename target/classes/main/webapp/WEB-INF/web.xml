@@ -31,4 +31,23 @@
     <url-pattern>/creaModificaUtente</url-pattern>
   </servlet-mapping>
 
+
+  <servlet>
+    <servlet-name>parcoAuto</servlet-name>
+    <servlet-class>main.java.Controller.ParcoAutoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>parcoAuto</servlet-name>
+    <url-pattern>/parcoAuto</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>creaModificaVeicolo</servlet-name>
+    <servlet-class>main.java.Controller.CreaModificaVeicolo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>creaModificaVeicolo</servlet-name>
+    <url-pattern>/creaModificaVeicolo</url-pattern>
+  </servlet-mapping>
+
 </web-app>
